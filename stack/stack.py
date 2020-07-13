@@ -12,6 +12,27 @@ return elements in Last In First Out order.
 """
 from singly_linked_list import Node, LinkedList
 
+# class Stack:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = []
+
+#     def __len__(self):
+#         return self.size
+
+#     def push(self, value):
+#         self.storage.appen(value)
+#         self.size += 1
+#         return self.size
+
+#     def pop(self):
+#         x = None
+#         if self.size > 0:
+#             self.size -= 1
+#             x = self.storage.pop(self.size)
+#             return x
+#         return x
+
 
 class Stack:
     def __init__(self):
