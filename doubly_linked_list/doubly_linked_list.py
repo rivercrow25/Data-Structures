@@ -90,8 +90,8 @@ class DoublyLinkedList:
         current = self.tail
         if self.tail.prev is not None:
             self.length -= 1
-            self.head.next.prev = None
-            self.head = self.head.next
+            current.prev.next = None
+            self.tail = current.prev
             return current.value
         else:
             self.length -= 1

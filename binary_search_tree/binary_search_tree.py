@@ -9,7 +9,27 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
-from queue import QueueList
+
+
+class Queue:
+    def __init__(self):
+        self.size = 0
+        self.storage = []
+
+    def __len__(self):
+        return self.size
+
+    def enqueue(self, value):
+        self.storage.append(value)
+        self.size += 1
+
+    def dequeue(self):
+        x = None
+        if self.size > 0:
+            self.size -= 1
+            x = self.storage.pop(0)
+            return x
+        return x
 
 
 class BSTNode:
@@ -79,20 +99,64 @@ class BSTNode:
         # in an iterative breadth first traversal
 
     def bft_print(self, node):
-        pass
+        # pass
+        que = Queue()
+        que.enqueue(self)
+        while que.size > 0:
+            node = que.dequeue()
+            print(node.value)
+
+            if node.left is not None:
+                que.enqueue(node.left)
+            if node.right is not None:
+                que.enqueue(node.right)
+
         # Print the value of every node, starting with the given node,
         # in an iterative depth first traversal
 
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        stack.push(self)
 
-    # Stretch Goals -------------------------
-    # Note: Research may be required
+        while stack.size > 0:
+            node = stack.pop()
+            print(node.value)
 
-    # Print Pre-order recursive DFT
+            if node.left is not None:
+                stack.push(node.left)
+
+            if node.right is not None:
+                stack.push(node.right)
+        # Stretch Goals -------------------------
+        # Note: Research may be required
+
+        # Print Pre-order recursive DFT
+
     def pre_order_dft(self, node):
         pass
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+class Stack:
+    def __init__(self):
+        self.size = 0
+        self.storage = []
+
+    def __len__(self):
+        return self.size
+
+    def push(self, value):
+        self.storage.append(value)
+        self.size += 1
+        return self.size
+
+    def pop(self):
+        x = None
+        if self.size > 0:
+            self.size -= 1
+            x = self.storage.pop(self.size)
+            return x
+        return x
