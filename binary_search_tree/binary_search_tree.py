@@ -143,9 +143,9 @@ class BSTNode:
     def post_order_dft(self, node):
 
         if self.left is not None:
-            self.left.pre_order_dft(node)
+            self.left.post_order_dft(node)
         if self.right is not None:
-            self.right.pre_order_dft(node)
+            self.right.post_order_dft(node)
         print(self.value)
 
 
