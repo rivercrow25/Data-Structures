@@ -30,6 +30,20 @@ class LinkedList:
             self.tail.set_next(new_node)
             self.tail = new_node
 
+    def add_to_head(self, value):
+        # create a node
+        new_node = Node(value)
+        # check is list empty
+        if self.head is None and self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+        # if there is a head already
+        else:
+            # "new node" should point to the "current" head of the linked list as its next node (next_node), therefor positioning self ahead of current head node
+            new_node.next_node = self.head
+            # then we say current head should point to the new node
+            self.head = new_node
+
     def remove_head(self):
         if not self.head:
             return None
@@ -43,19 +57,29 @@ class LinkedList:
         return value
 
     def remove_tail(self):
-        if self.head is None:
+        # if linked list is empty
+        if not self.head:
             return None
-        elif self.head is self.tail:
+        if self.head is self.tail:
             value = self.head.get_value()
             self.head = None
             self.tail = None
             return value
-        else:
-            current = self.head
+
+        current = self.head
         while current.get_next() is not self.tail:
             current = current.get_next()
-            value = self.tail
-            return value
+        value = self.tail.get_value()
+        self.tail = current
+        self.tail.get_next(None)
+        return value
+
+        current = self.head
+        while current.get_next() is not self.tail:
+            current = current.get_next()
+        value = self.tail.get_value()
+        self.tail = current
+        return value
 
     def contains(self, value):
         current = self.head
